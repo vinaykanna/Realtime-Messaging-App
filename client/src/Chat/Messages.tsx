@@ -1,5 +1,3 @@
-// import dots from "../assets/dots.png";
-
 import { useRef } from "react";
 import useScrollToBottom from "./useScrollToBottom";
 
@@ -17,49 +15,21 @@ function Messages({ messages }: Props) {
 
   useScrollToBottom({ ref });
   return (
-    <main
-      className="flex-1 bg-slate-800 relative p-5 overflow-y-auto"
-      ref={ref}
-    >
-      {/* <section
-        className="w-full h-full"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundImage: `url(${dots})`,
-          backgroundSize: "412.5px 749.25px",
-          opacity: 0.08,
-        }}
-      ></section> */}
+    <main className="flex-1 relative p-5 pr-8 overflow-y-auto bg-slate-800" ref={ref}>
       {messages.map((item) => {
-        if (item.type === "outgoing") {
-          return <OutGoingMessage message={item.message} />;
-        }
-
-        return <IncomingMessage message={item.message} />;
+        return <Message message={item.message} type={item.type} />;
       })}
     </main>
   );
 }
 
-function IncomingMessage({ message }: { message: string }) {
+function Message({ message, type }: { message: string; type: string }) {
+  const align = type === "outgoing" ? "justify-end" : "justify-start";
+  const bg = type === "outgoing" ? "bg-green-900" : "bg-slate-900";
   return (
-    <div className="flex mt-3">
-      <div className="bg-slate-900 px-4 py-2 rounded-lg">
+    <div className={`flex mt-3 ${align}`}>
+      <div className={`px-4 py-4 rounded-lg max-w-sm ${bg}`}>
         <p className="text-sm text-white">{message}</p>
-      </div>
-    </div>
-  );
-}
-
-function OutGoingMessage({ message }: { message: string }) {
-  return (
-    <div className="flex justify-end mt-3">
-      <div className="bg-green-950 px-4 py-2 text-slate-200 rounded-xl">
-        <p>{message}</p>
       </div>
     </div>
   );

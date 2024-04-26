@@ -5,6 +5,7 @@ import Messages from "./Messages";
 import ChatInput from "./ChatInput";
 import { contacts, initialMsgs } from "./dummy";
 import { useState } from "react";
+import dots from "../assets/dots.png";
 
 function Chat() {
   const svgCode = multiavatar("vinay");
@@ -28,8 +29,22 @@ function Chat() {
           ))}
         </div>
       </aside>
-      <article className="flex-1 flex flex-col">
-        <header className="h-16 shadow flex justify-end p-2 items-center bg-slate-800 border-b border-b-slate-700"></header>
+      <article className="flex-1 flex flex-col relative">
+        <section
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: `url(${dots})`,
+            backgroundSize: "412.5px 749.25px",
+            opacity: 0.1,
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        ></section>
+        <header className="h-16 shadow flex justify-end p-2 items-center bg-slate-800 border-b border-b-slate-700 z-10"></header>
         <Messages messages={messages} />
         <ChatInput
           onSend={(message: string) => {

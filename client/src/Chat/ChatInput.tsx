@@ -10,6 +10,7 @@ function ChatInput({ onSend }: Props) {
 
   return (
     <form
+      className="z-10"
       onSubmit={(e) => {
         e.preventDefault();
         onSend(message);
@@ -17,13 +18,18 @@ function ChatInput({ onSend }: Props) {
       }}
     >
       <footer className="h-16 px-1 border-t border-t-slate-700 flex items-center gap-2 bg-slate-800">
-        <button className="p-2 rounded-full hover:bg-slate-100  cursor-pointer text-white hover:text-slate-800">
+        <button
+          type="button"
+          className="p-2 rounded-full hover:bg-slate-100  cursor-pointer text-white hover:text-slate-800"
+        >
           <EmojiIcon className="w-6" />
         </button>
-        <button className="p-2 rounded-full hover:bg-slate-100 cursor-pointer text-white hover:text-slate-800">
+        <button
+          type="button"
+          className="p-2 rounded-full hover:bg-slate-100 cursor-pointer text-white hover:text-slate-800"
+        >
           <AttachmentIcon className="w-6" />
         </button>
-
         <input
           type="text"
           placeholder="Type a message.."
